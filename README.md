@@ -1,6 +1,6 @@
 <!-- This file lives at github.com/Tatendaz/Tatendaz/README.md and renders on your profile -->
 
-![header](https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/header.svg)
+![header](https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/header-banner.svg)
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3500&pause=800&center=true&width=780&lines=Software+and+Systems+Architect+%2F+SRE;10%2B+years+in+enterprise+software;AI+agents+%E2%80%A2+Web3+%E2%80%A2+iOS+%26+Android;End-to-end+systems+with+monitoring+%26+alerting;Open+to+consulting%2C+advisory+%26+speaking+%E2%80%94+remote)](https://git.io/typing-svg)
 
@@ -33,14 +33,10 @@
 
 [![My Skills](https://skillicons.dev/icons?i=py,go,ts,js,swift,kotlin,solidity,docker,ansible,aws,linux,git&perline=12)](https://skillicons.dev)
 
-## 📊 GitHub activity
+## 📊 Languages & activity
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=Tatendaz&show_icons=true&count_private=true&hide_border=true&theme=tokyonight" />
-  <img height="165" src="https://github-readme-streak-stats.herokuapp.com/?user=Tatendaz&hide_border=true&theme=tokyonight" />
-</p>
-<p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tatendaz&layout=compact&hide_border=true&langs_count=8&theme=tokyonight" />
+  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css&theme=tokyonight" />
 </p>
 
 <p align="center">
