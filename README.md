@@ -11,6 +11,8 @@
   <a href="https://x.com/realtatendazhou"><img src="https://img.shields.io/badge/X-%40realtatendazhou-000000?style=for-the-badge&logo=x&logoColor=white"/></a>
 </p>
 
+<p align="center"><a href="https://github.com/Tatendaz/showcase"><b>📂 Explore my selected work &amp; project write-ups →</b></a></p>
+
 ## 👋 About me
 
 - 🏗️ **Software & Systems Architect / SRE** with **10+ years in enterprise software** — I design and ship systems end-to-end
