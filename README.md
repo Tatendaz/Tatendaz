@@ -36,6 +36,7 @@
 ## 📊 Languages & activity
 
 <p align="center">
+  <img height="165" src="https://github-readme-streak-stats.herokuapp.com/?user=Tatendaz&hide_border=true&theme=tokyonight" />
   <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css&theme=tokyonight" />
 </p>
 
