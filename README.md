@@ -43,7 +43,7 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg" />
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake.svg" />
-    <img alt="contribution snake animation" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg" />
+    <img alt="contribution snake animation" width="50%" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg" />
   </picture>
 </p>
 
