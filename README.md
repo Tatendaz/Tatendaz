@@ -25,8 +25,7 @@
 ## 🔭 What I'm working on now
 
 - **[Vergance](https://github.com/Tatendaz/Vergance)** — gaze + voice → a hands-free Claude desktop tool *(Swift)*
-- **[Quant_Backtest_Platform](https://github.com/Tatendaz/Quant_Backtest_Platform)** — backtesting engine for trading strategies *(Python)*
-- **[crypto-exchange](https://github.com/Tatendaz/crypto-exchange)** — exchange core service *(Go)*
+- **[Quant Backtest Platform](https://github.com/Tatendaz/showcase/blob/main/projects/quant-backtest-platform.md)** — backtesting engine for trading strategies *(Python — write-up)*
 - **[langchain-fde-curriculum](https://github.com/Tatendaz/langchain-fde-curriculum)** — shipping production AI agents as a forward-deployed engineer *(Python)*
 - 📚 Learning: LangGraph multi-agent patterns + Solidity
 
