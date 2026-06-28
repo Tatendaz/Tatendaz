@@ -1,0 +1,35 @@
+name: Update contribution count
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch last-year contributions and update README
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COUNT=$(gh api graphql -f query='{ user(login: "Tatendaz"){ contributionsCollection { contributionCalendar { totalContributions } } } }' --jq '.data.user.contributionsCollection.contributionCalendar.totalContributions')
+          echo "fetched count: $COUNT"
+          # Guard: only write a positive integer (never overwrite with empty/0 on a transient error)
+          if ! echo "$COUNT" | grep -qE '^[1-9][0-9]*$'; then
+            echo "Invalid count ('$COUNT') — leaving README unchanged."
+            exit 0
+          fi
+          perl -0pi -e "s/(<!--CONTRIB_START-->).*?(<!--CONTRIB_END-->)/\${1}${COUNT}\${2}/s" README.md
+      - name: Commit if changed
+        run: |
+          if ! git diff --quiet README.md; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add README.md
+            git commit -m "chore: refresh contribution count [skip ci]"
+            git push
+          else
+            echo "No change."
+          fi
