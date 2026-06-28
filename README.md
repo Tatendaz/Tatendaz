@@ -1,6 +1,6 @@
 <!-- This file lives at github.com/Tatendaz/Tatendaz/README.md and renders on your profile -->
 
-![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Tatenda%20Zhou&fontSize=58&fontColor=ffffff&desc=Software%20%26%20Systems%20Architect%20%E2%80%A2%20SRE%20%E2%80%A2%20AI%20%C2%B7%20Web3%20%C2%B7%20Mobile&descAlignY=72&descSize=17)
+![header](https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/header.svg)
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3500&pause=800&center=true&width=780&lines=Software+and+Systems+Architect+%2F+SRE;10%2B+years+in+enterprise+software;AI+agents+%E2%80%A2+Web3+%E2%80%A2+iOS+%26+Android;End-to-end+systems+with+monitoring+%26+alerting;Open+to+consulting%2C+advisory+%26+speaking+%E2%80%94+remote)](https://git.io/typing-svg)
 
