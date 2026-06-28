@@ -1,6 +1,6 @@
 <!-- This file lives at github.com/Tatendaz/Tatendaz/README.md and renders on your profile -->
 
-![header](https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/header-banner.svg)
+![header](https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/header-warm.svg)
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3500&pause=800&center=true&width=780&lines=Software+and+Systems+Architect+%2F+SRE;10%2B+years+in+enterprise+software;AI+agents+%E2%80%A2+Web3+%E2%80%A2+iOS+%26+Android;End-to-end+systems+with+monitoring+%26+alerting;Open+to+consulting%2C+advisory+%26+speaking+%E2%80%94+remote)](https://git.io/typing-svg)
 
@@ -40,11 +40,14 @@
   <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css&theme=tokyonight" />
 </p>
 
+<!-- Recent-activity line chart: left-to-right time axis, focuses on the recent surge, no blank grid -->
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Tatendaz&theme=tokyo-night&hide_border=true&area=true&days=45" width="100%" />
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg" />
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake.svg" />
-    <img alt="contribution snake animation" width="50%" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg" />
+    <img alt="contribution snake animation" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg" />
   </picture>
 </p>
 
