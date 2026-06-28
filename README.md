@@ -40,17 +40,6 @@
   <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css&theme=tokyonight" />
 </p>
 
-<!-- Recent-activity line chart: left-to-right time axis, focuses on the recent surge, no blank grid -->
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=Tatendaz&theme=tokyo-night&hide_border=true&area=true&days=45" width="100%" />
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake.svg" />
-    <img alt="contribution snake animation" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg" />
-  </picture>
-</p>
-
 ## 📫 Reach me
 
 <p align="center">
