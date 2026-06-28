@@ -43,9 +43,13 @@
   <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tatendaz&layout=compact&hide_border=true&langs_count=8&theme=tokyonight" />
 </p>
 
-<!-- Snake animation — auto-enabled once the Platane/snk Action has run (it creates the `output` branch):
-![snake](https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg)
--->
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake.svg" />
+    <img alt="contribution snake animation" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/output/github-snake-dark.svg" />
+  </picture>
+</p>
 
 ## 📫 Reach me
 
