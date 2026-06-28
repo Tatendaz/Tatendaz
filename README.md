@@ -5,11 +5,10 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3500&pause=800&center=true&width=780&lines=Software+and+Systems+Architect+%2F+SRE;10%2B+years+in+enterprise+software;AI+agents+%E2%80%A2+Web3+%E2%80%A2+iOS+%26+Android;End-to-end+systems+with+monitoring+%26+alerting;Open+to+consulting%2C+advisory+%26+speaking+%E2%80%94+remote)](https://git.io/typing-svg)
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Open%20to-Work%20%26%20Opportunities-2ea44f?style=for-the-badge" alt="Open to Work"/>
-  <img src="https://img.shields.io/badge/Remote-Worldwide-1f6feb?style=for-the-badge" alt="Remote"/>
+  <a href="mailto:tatendaz@me.com?subject=Opportunity"><img src="https://img.shields.io/badge/Open%20to%20Work-Remote%20%C2%B7%20Worldwide-2ea44f?style=for-the-badge" alt="Open to Work — Remote, Worldwide"/></a>
   <a href="https://www.linkedin.com/in/tatendazhou"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
-  <a href="mailto:tatendaz@me.com"><img src="https://img.shields.io/badge/Email-Reach%20me-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
-  <a href="https://x.com/realtatendazhou"><img src="https://img.shields.io/badge/Follow-%40realtatendazhou-000000?style=for-the-badge&logo=x&logoColor=white"/></a>
+  <a href="mailto:tatendaz@me.com"><img src="https://img.shields.io/badge/Email-tatendaz%40me.com-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+  <a href="https://x.com/realtatendazhou"><img src="https://img.shields.io/badge/X-%40realtatendazhou-000000?style=for-the-badge&logo=x&logoColor=white"/></a>
 </p>
 
 ## 👋 About me
@@ -38,12 +37,4 @@
 <p align="center">
   <img height="165" src="https://github-readme-streak-stats.herokuapp.com/?user=Tatendaz&hide_border=true&theme=tokyonight" />
   <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css&theme=tokyonight" />
-</p>
-
-## 📫 Reach me
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/tatendazhou"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>
-  <a href="mailto:tatendaz@me.com"><img src="https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white"/></a>
-  <a href="https://x.com/realtatendazhou"><img src="https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white"/></a>
 </p>
