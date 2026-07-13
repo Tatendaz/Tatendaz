@@ -1,0 +1,30 @@
+name: Update top languages card
+on:
+  schedule:
+    - cron: "31 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate top languages card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css&theme=tokyonight
+          path: assets/top-langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit if changed
+        run: |
+          if [ -n "$(git status --porcelain assets/top-langs.svg)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add assets/top-langs.svg
+            git commit -m "chore: refresh top languages card [skip ci]"
+            git push
+          else
+            echo "No change."
+          fi
