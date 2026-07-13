@@ -24,6 +24,7 @@
 
 ## 🔭 What I'm working on now
 
+- **[yapui](https://github.com/Tatendaz/yapui)** — yap at your UI: live HTML preview with a two-way feedback loop, as a Claude Code skill *(JavaScript)*
 - **[Vergance](https://github.com/Tatendaz/Vergance)** — gaze + voice → a hands-free Claude desktop tool *(Swift)*
 - **[Quant Backtest Platform](https://github.com/Tatendaz/showcase/blob/main/projects/quant-backtest-platform.md)** — backtesting engine for trading strategies *(Python — write-up)*
 - **[langchain-fde-curriculum](https://github.com/Tatendaz/langchain-fde-curriculum)** — shipping production AI agents as a forward-deployed engineer *(Python)*
@@ -37,5 +38,5 @@
 
 <p align="center">
   <img height="165" src="https://github-readme-streak-stats.herokuapp.com/?user=Tatendaz&hide_border=true&theme=tokyonight" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css&theme=tokyonight" />
+  <img height="165" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/top-langs.svg" alt="Top languages" />
 </p>
