@@ -10,6 +10,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   update:
+    # Only branch refs (and only main): a dispatch from a tag must not push there
+    if: github.ref_type == 'branch' && github.ref_name == 'main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -35,6 +37,8 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add assets/top-langs.svg
             git commit -m "chore: refresh top languages card [skip ci]"
+            git fetch origin "${REF_NAME}"
+            git rebase "origin/${REF_NAME}"
             git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "HEAD:${REF_NAME}"
           else
             echo "No change."

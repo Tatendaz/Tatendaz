@@ -18,9 +18,10 @@
 - Checked upstream github-readme-stats guidance: public instance is
   best-effort; recommended path is generating static SVGs via GitHub Actions
   in the profile repo.
-- Added `.github/workflows/update-top-langs.yml` (daily cron + dispatch),
-  modeled on the existing `update-contributions.yml`, using
-  `stats-organization/github-readme-stats-action@v2` with the exact same card
+- Added `.github/workflows/update-top-langs.yml` (daily cron + dispatch +
+  push to `main`), modeled on the existing `update-contributions.yml`, using
+  `stats-organization/github-readme-stats-action` SHA-pinned to v2.0.1
+  (`f9d8133845f40d659a754f78b8484983ba766448`) with the same card
   options/theme as the old URL; commits `assets/top-langs.svg` when changed.
 - Pointed the README `<img>` at the committed SVG.
 - Verified `Tatendaz/yapui` is public (JavaScript) and added it as the first
@@ -35,7 +36,9 @@
 - Chose Actions-generated static SVG over swapping to another public mirror:
   mirrors share the same failure mode (third-party deployment dies); a
   committed SVG regenerated daily has no runtime dependency.
-- Used `@v2` major tag to match the repo's existing action-pinning style
-  (`snk@v3`, `checkout@v4`).
+- Started with the `@v2` major tag to match the repo's existing action-pinning
+  style (`snk@v3`, `checkout@v4`), then switched to the v2.0.1 commit SHA
+  (`f9d8133845f40d659a754f78b8484983ba766448`) per review — stricter pinning
+  for a third-party action that receives the job token.
 - Kept the streak card URL unchanged — it is currently healthy.
 - Placed yapui first in the list by push recency (Jul 10 vs Jul 4 / Jun 30).
