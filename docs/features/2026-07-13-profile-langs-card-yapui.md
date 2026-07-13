@@ -18,12 +18,12 @@ so the card can't break this way again. yapui (public, JavaScript) is the most
 recently active project and belongs in the working-on list.
 
 ## What changed
-- New workflow `.github/workflows/update-top-langs.yml`: daily (03:31 UTC) +
-  manual dispatch; renders the top-langs card with the same options/theme as
-  before (`layout=compact`, `hide_border=true`, `langs_count=8`,
-  `hide=html,css`, `theme=tokyonight`) via
-  `stats-organization/github-readme-stats-action@v2` and commits
-  `assets/top-langs.svg` when it changes.
+- New workflow `.github/workflows/update-top-langs.yml`: daily (03:31 UTC),
+  manual dispatch, and on push to `main` (so the card refreshes on merge);
+  renders the top-langs card with the same options/theme as before
+  (`layout=compact`, `hide_border=true`, `langs_count=8`, `hide=html,css`,
+  `theme=tokyonight`) via `stats-organization/github-readme-stats-action`
+  (SHA-pinned to v2.0.1) and commits `assets/top-langs.svg` when it changes.
 - `README.md`: top-langs `<img>` now points at
   `raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/top-langs.svg`.
 - `README.md`: added yapui (first entry) to "What I'm working on now".

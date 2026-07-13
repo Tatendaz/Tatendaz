@@ -38,5 +38,5 @@
 
 <p align="center">
   <img height="165" src="https://github-readme-streak-stats.herokuapp.com/?user=Tatendaz&hide_border=true&theme=tokyonight" />
-  <img height="165" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/top-langs.svg" />
+  <img height="165" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/top-langs.svg" alt="Top languages" />
 </p>
