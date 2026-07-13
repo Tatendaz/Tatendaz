@@ -13,9 +13,11 @@ GitHub Actions and committed to this repo, and adds **yapui** to the
 The profile README's Languages & activity section showed a broken-image icon:
 the shared github-readme-stats Vercel deployment returns
 `503 DEPLOYMENT_PAUSED`. Upstream now recommends generating cards as static
-SVGs via GitHub Actions in the profile repo — no external runtime dependency,
-so the card can't break this way again. yapui (public, JavaScript) is the most
-recently active project and belongs in the working-on list.
+SVGs via GitHub Actions in the profile repo — serving the card no longer
+depends on an external service at page-view time. Generation still uses the
+GitHub API and the card action daily, but if a run fails the last good SVG
+stays in place instead of a broken image. yapui (public, JavaScript) is the
+most recently active project and belongs in the working-on list.
 
 ## What changed
 - New workflow `.github/workflows/update-top-langs.yml`: daily (03:31 UTC),
