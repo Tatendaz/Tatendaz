@@ -1,0 +1,77 @@
+name: README health check
+on:
+  schedule:
+    - cron: "0 7 * * 1" # Mondays 07:00 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [README.md]
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: readme-health-check
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      ISSUE_TITLE: "Profile README health check: broken images"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check every image URL in README
+        id: check
+        run: |
+          set -o pipefail
+          urls=$(grep -oE '(!\[[^]]*\]\(https?://[^)]+\)|src="https?://[^"]+")' README.md \
+            | grep -oE 'https?://[^)"]+' | sort -u || true)
+          : > "$RUNNER_TEMP/broken.md"
+          if [ -n "$urls" ]; then
+            while IFS= read -r url; do
+              code=$(curl -sL -o /dev/null -w "%{http_code}" --retry 3 --retry-delay 5 --max-time 60 "$url" || true)
+              code=${code:-000}
+              echo "$code  $url"
+              case "$code" in
+                2*|3*) ;;
+                *) printf -- '- `%s` %s\n' "$code" "$url" >> "$RUNNER_TEMP/broken.md" ;;
+              esac
+            done <<< "$urls"
+          fi
+          if [ -s "$RUNNER_TEMP/broken.md" ]; then
+            echo "broken=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "broken=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Open or update issue when broken
+        if: steps.check.outputs.broken == 'true'
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "The weekly README health check found image URLs that are not returning a 2xx/3xx status:"
+            echo
+            cat "$RUNNER_TEMP/broken.md"
+            echo
+            echo "Fix by swapping the dead host for a working one or generating the asset locally in \`assets/\` via \`update-readme-cards.yml\` (see docs/features for the established pattern)."
+            echo
+            echo "_Run: ${RUN_URL}_"
+          } > "$RUNNER_TEMP/body.md"
+          existing=$(gh issue list --state open --limit 100 --json number,title \
+            | jq -r --arg t "$ISSUE_TITLE" '[.[] | select(.title == $t) | .number] | first // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file "$RUNNER_TEMP/body.md"
+          else
+            gh issue create --title "$ISSUE_TITLE" --body-file "$RUNNER_TEMP/body.md"
+          fi
+      - name: Close issue when healthy again
+        if: steps.check.outputs.broken == 'false'
+        run: |
+          existing=$(gh issue list --state open --limit 100 --json number,title \
+            | jq -r --arg t "$ISSUE_TITLE" '[.[] | select(.title == $t) | .number] | first // empty')
+          if [ -n "$existing" ]; then
+            gh issue close "$existing" --comment "Health check passing again — all README image URLs return a 2xx/3xx status."
+          fi

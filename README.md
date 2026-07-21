@@ -26,12 +26,15 @@
 
 <p align="center">
   <a href="https://github.com/Tatendaz/yapui"><img height="140" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/pin-yapui.svg" alt="yapui — yap at your UI: live HTML preview with a two-way feedback loop, as a Claude Code skill (JavaScript)" /></a>
+  <a href="https://github.com/Tatendaz/langchain-fde-curriculum"><img height="140" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/pin-langchain-fde-curriculum.svg" alt="langchain-fde-curriculum — a 6-phase, deliverable-driven curriculum for shipping production-grade AI agents on the LangChain / LangGraph / LangSmith stack (Python)" /></a>
 </p>
-
-- **[Vergance](https://github.com/Tatendaz/Vergance)** — gaze + voice → a hands-free Claude desktop tool *(Swift)*
-- **[Quant Backtest Platform](https://github.com/Tatendaz/showcase/blob/main/projects/quant-backtest-platform.md)** — backtesting engine for trading strategies *(Python — write-up)*
-- **[langchain-fde-curriculum](https://github.com/Tatendaz/langchain-fde-curriculum)** — shipping production AI agents as a forward-deployed engineer *(Python)*
-- 📚 Learning: LangGraph multi-agent patterns + Solidity
+<p align="center">
+  <a href="https://github.com/Tatendaz/Vergance"><img height="140" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/pin-vergance.svg" alt="Vergance — gaze + voice as a multimodal input layer: look, speak, and your gaze-resolved intent goes to Claude (Swift)" /></a>
+  <a href="https://github.com/Tatendaz/claude-usage"><img height="140" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/pin-claude-usage.svg" alt="claude-usage — your Claude quota, live in the terminal status bar: iTerm2, tmux, WezTerm, kitty, starship (Python)" /></a>
+</p>
+<p align="center">
+  <a href="https://github.com/Tatendaz/promptups"><img height="140" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/pin-promptups.svg" alt="promptups — do reps while Claude thinks: webcam rep counting wired to Claude Code hooks, with a trash-talking coach (JavaScript)" /></a>
+</p>
 
 ## 🛠️ Tech stack
 
@@ -40,6 +43,6 @@
 ## 📊 Languages & activity
 
 <p align="center">
-  <img height="165" src="https://github-readme-streak-stats.herokuapp.com/?user=Tatendaz&hide_border=true&theme=tokyonight" />
+  <img height="165" src="https://streak-stats.demolab.com?user=Tatendaz&hide_border=true&theme=tokyonight" alt="GitHub streak stats" />
   <img height="165" src="https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/assets/top-langs.svg" alt="Top languages" />
 </p>
