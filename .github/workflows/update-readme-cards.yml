@@ -33,16 +33,44 @@ jobs:
           options: username=Tatendaz&repo=yapui&hide_border=true&theme=tokyonight
           path: assets/pin-yapui.svg
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate langchain-fde-curriculum pin card
+        uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
+        with:
+          card: pin
+          options: username=Tatendaz&repo=langchain-fde-curriculum&hide_border=true&theme=tokyonight
+          path: assets/pin-langchain-fde-curriculum.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate Vergance pin card
+        uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
+        with:
+          card: pin
+          options: username=Tatendaz&repo=Vergance&hide_border=true&theme=tokyonight
+          path: assets/pin-vergance.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate claude-usage pin card
+        uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
+        with:
+          card: pin
+          options: username=Tatendaz&repo=claude-usage&hide_border=true&theme=tokyonight
+          path: assets/pin-claude-usage.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate promptups pin card
+        uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
+        with:
+          card: pin
+          options: username=Tatendaz&repo=promptups&hide_border=true&theme=tokyonight
+          path: assets/pin-promptups.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit if changed
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           REF_NAME: ${{ github.ref_name }}
         run: |
-          if [ -n "$(git status --porcelain assets/top-langs.svg assets/pin-yapui.svg)" ]; then
+          if [ -n "$(git status --porcelain assets/)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add assets/top-langs.svg assets/pin-yapui.svg
+            git add assets/
             git commit -m "chore: refresh README cards [skip ci]"
             git fetch origin "${REF_NAME}"
             git rebase "origin/${REF_NAME}"
