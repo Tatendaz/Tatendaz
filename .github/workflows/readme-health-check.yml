@@ -32,7 +32,8 @@ jobs:
           : > "$RUNNER_TEMP/broken.md"
           if [ -n "$urls" ]; then
             while IFS= read -r url; do
-              code=$(curl -sL -o /dev/null -w "%{http_code}" --retry 3 --retry-delay 5 --max-time 60 "$url" || true)
+              # --max-time is per attempt; the outer timeout is the hard per-URL ceiling
+              code=$(timeout 300 curl -sL -o /dev/null -w "%{http_code}" --retry 3 --retry-delay 5 --max-time 60 "$url" || true)
               code=${code:-000}
               echo "$code  $url"
               case "$code" in
@@ -60,7 +61,7 @@ jobs:
             echo
             echo "_Run: ${RUN_URL}_"
           } > "$RUNNER_TEMP/body.md"
-          existing=$(gh issue list --state open --limit 100 --json number,title \
+          existing=$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number,title \
             | jq -r --arg t "$ISSUE_TITLE" '[.[] | select(.title == $t) | .number] | first // empty')
           if [ -n "$existing" ]; then
             gh issue comment "$existing" --body-file "$RUNNER_TEMP/body.md"
@@ -70,7 +71,7 @@ jobs:
       - name: Close issue when healthy again
         if: steps.check.outputs.broken == 'false'
         run: |
-          existing=$(gh issue list --state open --limit 100 --json number,title \
+          existing=$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number,title \
             | jq -r --arg t "$ISSUE_TITLE" '[.[] | select(.title == $t) | .number] | first // empty')
           if [ -n "$existing" ]; then
             gh issue close "$existing" --comment "Health check passing again — all README image URLs return a 2xx/3xx status."

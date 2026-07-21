@@ -44,7 +44,8 @@ visitor.
   the first workflow run after merge replaces them, so a diff-commit from the
   bot right after merge is expected.
 - The health check treats any non-2xx/3xx final status as broken; transient
-  slowness is absorbed by `--retry 3` and a 60s per-URL budget
-  (`streak-stats.demolab.com` routinely takes ~6s).
+  slowness is absorbed by `--retry 3` with a 60s cap per attempt, under a hard
+  300s `timeout` ceiling per URL (`streak-stats.demolab.com` routinely takes
+  ~6s).
 - A weekly Claude routine complements this: it picks up the health-check
   issue (or finds breakage itself) and opens a fix PR.
