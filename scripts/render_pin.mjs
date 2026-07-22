@@ -34,25 +34,13 @@ const { renderRepoCard } = await import(
   pathToFileURL(join(coreDir, "build", "cards", "repo.js")).href
 );
 
-// Linguist colors for the languages GraphQL used to supply alongside
-// primaryLanguage. REST has no color field, so map the common ones here;
-// unknown languages fall back to the renderer's default.
-const LANG_COLORS = {
-  JavaScript: "#f1e05a",
-  TypeScript: "#3178c6",
-  Python: "#3572A5",
-  Swift: "#F05138",
-  Shell: "#89e051",
-  HTML: "#e34c26",
-  CSS: "#663399",
-  Go: "#00ADD8",
-  Rust: "#dea584",
-  C: "#555555",
-  "C++": "#f34b7d",
-  Java: "#b07219",
-  Kotlin: "#A97BFF",
-  Ruby: "#701516",
-};
+// Full linguist language→color map (vendored from ozh/github-colors, which
+// mirrors github-linguist). GraphQL used to supply the color alongside
+// primaryLanguage; REST has no color field. Unknown languages fall back to
+// the renderer's default.
+const LANG_COLORS = JSON.parse(
+  readFileSync(new URL("./linguist-colors.json", import.meta.url), "utf8"),
+);
 
 const rest = JSON.parse(readFileSync(0, "utf8"));
 for (const field of ["name", "full_name"]) {
@@ -61,20 +49,40 @@ for (const field of ["name", "full_name"]) {
     process.exit(1);
   }
 }
+for (const field of ["private", "archived", "is_template"]) {
+  if (typeof rest[field] !== "boolean") {
+    console.error(`REST payload field ${field} is not a boolean — refusing to render`);
+    process.exit(1);
+  }
+}
+for (const field of ["stargazers_count", "forks_count"]) {
+  if (!Number.isInteger(rest[field]) || rest[field] < 0) {
+    console.error(`REST payload field ${field} is not a non-negative integer — refusing to render`);
+    process.exit(1);
+  }
+}
+if (rest.description != null && typeof rest.description !== "string") {
+  console.error("REST payload field description is not a string — refusing to render");
+  process.exit(1);
+}
+if (rest.language != null && typeof rest.language !== "string") {
+  console.error("REST payload field language is not a string — refusing to render");
+  process.exit(1);
+}
 
 const svg = renderRepoCard(
   {
     name: rest.name,
     nameWithOwner: rest.full_name,
     description: rest.description,
-    isPrivate: Boolean(rest.private),
-    isArchived: Boolean(rest.archived),
-    isTemplate: Boolean(rest.is_template),
+    isPrivate: rest.private,
+    isArchived: rest.archived,
+    isTemplate: rest.is_template,
     primaryLanguage: rest.language
       ? { name: rest.language, color: LANG_COLORS[rest.language] ?? null }
       : null,
-    starCount: rest.stargazers_count ?? 0,
-    forkCount: rest.forks_count ?? 0,
+    starCount: rest.stargazers_count,
+    forkCount: rest.forks_count,
   },
   { hide_border: true, theme: "tokyonight" },
 );
