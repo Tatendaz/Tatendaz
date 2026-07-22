@@ -58,9 +58,10 @@ jobs:
                     "$PWD"/*)
                       if [ -f "$abs" ] && [ -s "$abs" ]; then
                         # Existence isn't health: generated cards can be committed
-                        # as "Something went wrong" error SVGs (2026-07-22: all 5
-                        # pin cards). An error card counts as broken.
-                        if grep -q "Something went wrong" "$abs"; then
+                        # as error SVGs (2026-07-22: all 5 pin cards). Match the
+                        # error card's unique data-testid="message" node — plain
+                        # body text could appear in a real description.
+                        if grep -q 'data-testid="message"' "$abs"; then
                           code=ERRCARD
                         else
                           code=200
