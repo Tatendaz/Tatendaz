@@ -64,6 +64,24 @@ jobs:
           options: username=Tatendaz&repo=promptups&hide_border=true&theme=tokyonight
           path: assets/pin-promptups.svg
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Never commit error cards
+        id: sanitize
+        # The stats action exits 0 even when the API returns an error, writing
+        # an SVG that says "Something went wrong" (seen 2026-07-22: all 5 pin
+        # cards shipped as "User Repository Not found" error cards). Keep the
+        # previous good version instead; a new card with no good version to
+        # fall back to is deleted so the breakage shows up as a 404 the health
+        # check already catches.
+        run: |
+          bad=0
+          for f in assets/*.svg; do
+            if grep -q "Something went wrong" "$f"; then
+              echo "::warning file=$f::generated card is an error card; keeping the previous good version"
+              git checkout -- "$f" 2>/dev/null || rm -f -- "$f"
+              bad=1
+            fi
+          done
+          echo "bad=$bad" >> "$GITHUB_OUTPUT"
       - name: Commit if changed
         env:
           REF_NAME: ${{ github.ref_name }}

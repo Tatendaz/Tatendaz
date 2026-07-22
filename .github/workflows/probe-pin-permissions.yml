@@ -1,0 +1,70 @@
+name: "Probe: pin card vs token permissions"
+# Temporary experiment — DELETE BEFORE MERGE.
+# Reproduces the 2026-07-22 pin-card breakage: which GITHUB_TOKEN permission
+# set lets github-readme-stats' cross-repo pin query succeed?
+on:
+  push:
+    branches: [fix/no-error-cards-guard]
+jobs:
+  probe-contents-read:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
+        with:
+          card: pin
+          options: username=Tatendaz&repo=yapui&hide_border=true&theme=tokyonight
+          path: probe-pin.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          if grep -q "Something went wrong" probe-pin.svg; then echo "VERDICT: ERROR-CARD"; exit 1; fi
+          echo "VERDICT: OK"
+  probe-contents-write:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
+        with:
+          card: pin
+          options: username=Tatendaz&repo=yapui&hide_border=true&theme=tokyonight
+          path: probe-pin.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          if grep -q "Something went wrong" probe-pin.svg; then echo "VERDICT: ERROR-CARD"; exit 1; fi
+          echo "VERDICT: OK"
+  probe-all-read:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      checks: read
+      deployments: read
+      discussions: read
+      issues: read
+      packages: read
+      pages: read
+      pull-requests: read
+      repository-projects: read
+      security-events: read
+      statuses: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
+        with:
+          card: pin
+          options: username=Tatendaz&repo=yapui&hide_border=true&theme=tokyonight
+          path: probe-pin.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          if grep -q "Something went wrong" probe-pin.svg; then echo "VERDICT: ERROR-CARD"; exit 1; fi
+          echo "VERDICT: OK"
