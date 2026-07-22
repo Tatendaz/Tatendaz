@@ -14,11 +14,14 @@ jobs:
     if: github.ref_type == 'branch' && github.ref_name == 'main'
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      # Pushes go over the deploy key; the token only reads stats APIs
+      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          # Deploy key, not GITHUB_TOKEN: main's ruleset requires image-health,
+          # and only deploy keys can bypass it on a personal repo.
+          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       - name: Generate top languages card
         uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
         with:
@@ -63,8 +66,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit if changed
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
           REF_NAME: ${{ github.ref_name }}
         run: |
           if [ -n "$(git status --porcelain assets/)" ]; then
@@ -74,7 +75,7 @@ jobs:
             git commit -m "chore: refresh README cards [skip ci]"
             git fetch origin "${REF_NAME}"
             git rebase "origin/${REF_NAME}"
-            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "HEAD:${REF_NAME}"
+            git push origin "HEAD:${REF_NAME}"
           else
             echo "No change."
           fi

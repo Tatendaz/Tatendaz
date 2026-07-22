@@ -28,10 +28,16 @@ previously no workflow ran on PRs at all.
   - On PRs, broken images fail the job (red check); the issue-filing and
     issue-closing steps only run for schedule/push/dispatch events.
   - Concurrency group is per-ref so PR runs don't queue behind main runs.
-  - Runtime hard-bounded for a required check: `timeout-minutes: 20` on the
-    job, per-URL budget tightened to 20s per attempt under a 120s ceiling,
-    local paths guarded against traversal outside the checkout, and at most
-    50 URLs checked per run (logged if more).
+  - Runtime hard-bounded for a required check: `timeout-minutes: 25` on the
+    job, 12s per curl attempt under a 45s per-URL ceiling, local paths guarded
+    against traversal outside the checkout (regular files only), and a
+    fail-closed cap of 25 URLs — overflow marks the check broken rather than
+    silently skipping URLs (25 × 45s ≈ 19 min worst case fits the budget).
+- `update-readme-cards.yml` / `update-contributions.yml`: the daily bots now
+  push via a write deploy key (`ACTIONS_DEPLOY_KEY` secret) instead of
+  `GITHUB_TOKEN` — GitHub rejects the Actions app as a ruleset bypass actor on
+  personal repos, and deploy keys are the supported bypass class, so this is
+  what lets the bots keep pushing to main under the required check.
 - Repo settings (not in git): `allow_auto_merge` enabled; ruleset
   "main: require image-health" targeting the default branch with a
   `required_status_checks` rule (context `image-health`, non-strict) and

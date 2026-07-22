@@ -4,12 +4,17 @@ on:
     - cron: "17 3 * * *"
   workflow_dispatch:
 permissions:
-  contents: write
+  # Pushes go over the deploy key; the token only reads the GraphQL API
+  contents: read
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Deploy key, not GITHUB_TOKEN: main's ruleset requires image-health,
+          # and only deploy keys can bypass it on a personal repo.
+          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       - name: Fetch last-year contributions and update README
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
