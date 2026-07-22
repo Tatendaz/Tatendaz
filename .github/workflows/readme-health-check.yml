@@ -6,15 +6,22 @@ on:
   push:
     branches: [main]
     paths: [README.md]
+  # No paths filter: this job is a required status check on main, so it must
+  # produce a result on every PR or auto-merge would wait forever.
+  pull_request:
+    branches: [main]
 permissions:
   contents: read
   issues: write
 concurrency:
-  group: readme-health-check
+  group: readme-health-check-${{ github.ref }}
   cancel-in-progress: false
 jobs:
-  check:
+  image-health:
     runs-on: ubuntu-latest
+    # Required PR check — must terminate promptly even if every host hangs
+    # (25 URLs × 45s ≈ 19 min worst case, plus issue-step overhead)
+    timeout-minutes: 25
     env:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
@@ -30,12 +37,36 @@ jobs:
           urls=$(grep -oE '(!\[[^]]*\]\(https?://[^)]+\)|src="https?://[^"]+")' README.md \
             | grep -oE 'https?://[^)"]+' | sort -u || true)
           : > "$RUNNER_TEMP/broken.md"
+          # Fail closed on overflow: never report green for URLs we didn't check.
+          # 25 × 45s worst-case ≈ 19 min, inside the 20-min job budget.
+          count=$(printf '%s\n' "$urls" | sed '/^$/d' | wc -l | tr -d ' ')
+          if [ "$count" -gt 25 ]; then
+            echo "error: $count image URLs found; this check is budgeted for 25 — raise the budget deliberately" \
+              | tee -a "$RUNNER_TEMP/broken.md"
+            urls=""
+          fi
           if [ -n "$urls" ]; then
             while IFS= read -r url; do
-              # --max-time is per attempt; the outer timeout is the hard per-URL ceiling
-              code=$(timeout 300 curl -sL -o /dev/null -w "%{http_code}" --retry 3 --retry-delay 5 --max-time 60 "$url" || true)
-              code=${code:-000}
-              echo "$code  $url"
+              case "$url" in
+                # Repo-hosted assets: validate the checked-out file. On a PR the
+                # asset may not exist on main yet, so raw/main would 404 even
+                # though the PR is correct.
+                https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/*)
+                  path="${url#https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/}"
+                  abs=$(realpath -m -- "$path")
+                  case "$abs" in
+                    "$PWD"/*) if [ -f "$abs" ] && [ -s "$abs" ]; then code=200; else code=404; fi ;;
+                    *) code=400 ;; # path escapes the checkout — treat as broken
+                  esac
+                  echo "$code  $url (local: $path)"
+                  ;;
+                *)
+                  # --max-time is per attempt; the outer timeout is the hard per-URL ceiling
+                  code=$(timeout 45 curl -sL -o /dev/null -w "%{http_code}" --retry 2 --retry-delay 3 --max-time 12 "$url" || true)
+                  code=${code:-000}
+                  echo "$code  $url"
+                  ;;
+              esac
               case "$code" in
                 2*|3*) ;;
                 *) printf -- '- `%s` %s\n' "$code" "$url" >> "$RUNNER_TEMP/broken.md" ;;
@@ -47,8 +78,14 @@ jobs:
           else
             echo "broken=false" >> "$GITHUB_OUTPUT"
           fi
+      - name: Fail the check on PRs when broken
+        if: github.event_name == 'pull_request' && steps.check.outputs.broken == 'true'
+        run: |
+          echo "Broken image URLs in this PR's README:"
+          cat "$RUNNER_TEMP/broken.md"
+          exit 1
       - name: Open or update issue when broken
-        if: steps.check.outputs.broken == 'true'
+        if: github.event_name != 'pull_request' && steps.check.outputs.broken == 'true'
         env:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
@@ -69,7 +106,7 @@ jobs:
             gh issue create --title "$ISSUE_TITLE" --body-file "$RUNNER_TEMP/body.md"
           fi
       - name: Close issue when healthy again
-        if: steps.check.outputs.broken == 'false'
+        if: github.event_name != 'pull_request' && steps.check.outputs.broken == 'false'
         run: |
           existing=$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number,title \
             | jq -r --arg t "$ISSUE_TITLE" '[.[] | select(.title == $t) | .number] | first // empty')
