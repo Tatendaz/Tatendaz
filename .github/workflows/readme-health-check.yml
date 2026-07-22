@@ -55,7 +55,20 @@ jobs:
                   path="${url#https://raw.githubusercontent.com/Tatendaz/Tatendaz/main/}"
                   abs=$(realpath -m -- "$path")
                   case "$abs" in
-                    "$PWD"/*) if [ -f "$abs" ] && [ -s "$abs" ]; then code=200; else code=404; fi ;;
+                    "$PWD"/*)
+                      if [ -f "$abs" ] && [ -s "$abs" ]; then
+                        # Existence isn't health: generated cards can be committed
+                        # as "Something went wrong" error SVGs (2026-07-22: all 5
+                        # pin cards). An error card counts as broken.
+                        if grep -q "Something went wrong" "$abs"; then
+                          code=ERRCARD
+                        else
+                          code=200
+                        fi
+                      else
+                        code=404
+                      fi
+                      ;;
                     *) code=400 ;; # path escapes the checkout — treat as broken
                   esac
                   echo "$code  $url (local: $path)"
@@ -90,7 +103,7 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           {
-            echo "The weekly README health check found image URLs that are not returning a 2xx/3xx status:"
+            echo "The weekly README health check found image URLs that are not returning a 2xx/3xx status (ERRCARD = the committed asset renders a \"Something went wrong\" error card):"
             echo
             cat "$RUNNER_TEMP/broken.md"
             echo
