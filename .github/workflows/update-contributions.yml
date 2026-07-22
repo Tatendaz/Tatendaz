@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Deploy key, not GITHUB_TOKEN: main's ruleset requires image-health,
-          # and only deploy keys can bypass it on a personal repo.
-          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          # No job-wide credentials: the deploy key is loaded only in the
+          # push step below.
+          persist-credentials: false
       - name: Fetch last-year contributions and update README
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -28,13 +28,23 @@ jobs:
           fi
           perl -0pi -e "s/(<!--CONTRIB_START-->).*?(<!--CONTRIB_END-->)/\${1}${COUNT}\${2}/s" README.md
       - name: Commit if changed
+        env:
+          REF_NAME: ${{ github.ref_name }}
+          # Deploy key, not GITHUB_TOKEN: main's ruleset requires image-health,
+          # and only deploy keys can bypass it on a personal repo. Scoped to
+          # this step only.
+          DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         run: |
           if ! git diff --quiet README.md; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add README.md
             git commit -m "chore: refresh contribution count [skip ci]"
-            git push
+            umask 077
+            printf '%s\n' "$DEPLOY_KEY" > "$RUNNER_TEMP/deploy_key"
+            GIT_SSH_COMMAND="ssh -i $RUNNER_TEMP/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new" \
+              git push "git@github.com:${GITHUB_REPOSITORY}.git" "HEAD:${REF_NAME}"
+            rm -f "$RUNNER_TEMP/deploy_key"
           else
             echo "No change."
           fi

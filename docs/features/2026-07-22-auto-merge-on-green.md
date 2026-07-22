@@ -37,7 +37,11 @@ previously no workflow ran on PRs at all.
   push via a write deploy key (`ACTIONS_DEPLOY_KEY` secret) instead of
   `GITHUB_TOKEN` — GitHub rejects the Actions app as a ruleset bypass actor on
   personal repos, and deploy keys are the supported bypass class, so this is
-  what lets the bots keep pushing to main under the required check.
+  what lets the bots keep pushing to main under the required check. The key is
+  scoped to the push step only (written under `umask 077`, used via
+  `GIT_SSH_COMMAND`, removed after) — checkout stays credential-free so the
+  third-party card actions never see it, and both workflows' `GITHUB_TOKEN`
+  drops to `contents: read`.
 - Repo settings (not in git): `allow_auto_merge` enabled; ruleset
   "main: require image-health" targeting the default branch with a
   `required_status_checks` rule (context `image-health`, non-strict) and

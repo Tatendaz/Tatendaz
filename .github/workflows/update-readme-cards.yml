@@ -19,9 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Deploy key, not GITHUB_TOKEN: main's ruleset requires image-health,
-          # and only deploy keys can bypass it on a personal repo.
-          ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          # No job-wide credentials: the third-party card actions below must
+          # never see the deploy key. It is loaded only in the push step.
+          persist-credentials: false
       - name: Generate top languages card
         uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
         with:
@@ -67,6 +67,10 @@ jobs:
       - name: Commit if changed
         env:
           REF_NAME: ${{ github.ref_name }}
+          # Deploy key, not GITHUB_TOKEN: main's ruleset requires image-health,
+          # and only deploy keys can bypass it on a personal repo. Scoped to
+          # this step only.
+          DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         run: |
           if [ -n "$(git status --porcelain assets/)" ]; then
             git config user.name "github-actions[bot]"
@@ -75,7 +79,11 @@ jobs:
             git commit -m "chore: refresh README cards [skip ci]"
             git fetch origin "${REF_NAME}"
             git rebase "origin/${REF_NAME}"
-            git push origin "HEAD:${REF_NAME}"
+            umask 077
+            printf '%s\n' "$DEPLOY_KEY" > "$RUNNER_TEMP/deploy_key"
+            GIT_SSH_COMMAND="ssh -i $RUNNER_TEMP/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new" \
+              git push "git@github.com:${GITHUB_REPOSITORY}.git" "HEAD:${REF_NAME}"
+            rm -f "$RUNNER_TEMP/deploy_key"
           else
             echo "No change."
           fi
