@@ -19,7 +19,7 @@
 - 🚀 I build **AI agents, Web3, and native iOS & Android apps** — taken all the way to production with **cloud infra deployment, monitoring & alerting**
 - 🎯 **For business leaders:** I run executive workshops that turn AI from buzzword into bottom-line — getting your whole team using AI daily so productivity (and ROI) actually goes up
 - 🟢 **Available for:** consulting, fractional / advisory & speaking — **remote, worldwide**
-- 📈 **<!--CONTRIB_START-->1320<!--CONTRIB_END--> contributions** in the last year — I ship most days (auto-updated daily)
+- 📈 **<!--CONTRIB_START-->1329<!--CONTRIB_END--> contributions** in the last year — I ship most days (auto-updated daily)
 - 💬 Ask me about: system design, reliability/SRE, AI agents, mobile, crypto infra
 
 ## 🔭 What I'm working on now
