@@ -10,6 +10,11 @@
    LinkedIn the lead buttons. Cards and header must read well in GitHub light
    AND dark themes ... Keep the auto-updated contributions counter markers
    intact."
+2. (from the team lead) "New owner facts. Add a short speaking line to the profile
+   README. 1. Podcast guest: Koshelek Team YouTube channel, episode 'From
+   Zimbabwe to Russia: how a foreigner built a successful IT career' ... 2. Former
+   club president of a Toastmasters club in Saint Petersburg. Do not add a club
+   name or dates."
 
 ## Steps taken
 - Read the positioning and contact memories, the current README, the pin-card

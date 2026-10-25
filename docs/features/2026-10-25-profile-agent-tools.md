@@ -21,7 +21,8 @@ enquiries, matching tatendaz.github.io.
 ## What changed
 - `README.md`: new header, typing lines, bio, and button order (X, LinkedIn,
   website, email). The "Open to Work" badge, Web3, crypto and the Solidity skill
-  icon are gone. A 2-column table shows 8 pin cards: the 7 projects with pages
+  icon are gone. The podcasts and talks line links the owner's guest episode on the
+  Koshelek Team YouTube channel and notes the Toastmasters club presidency. A 2-column table shows 8 pin cards: the 7 projects with pages
   (coderabbit-failover, codeandconfirm, mission-control, model-picker, T-mods,
   QuotaSignal, herdr-launcher) plus claude-usage. yapui, Vergance, promptups,
   langchain-fde-curriculum and showcase move to one text line.

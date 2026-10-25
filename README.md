@@ -22,7 +22,7 @@
 - **Software and Systems Architect / SRE** with **10+ years in enterprise software**. I design and ship systems end to end, with cloud deployment, monitoring and alerting.
 - I build **open-source tools that review, test and measure the work of AI coding agents** (Claude Code and Codex). They are below.
 - **[Workshops](https://tatendaz.github.io/#workshops):** I teach engineering teams to get real work out of AI coding agents, using these tools as live examples.
-- **[Podcasts and talks](https://tatendaz.github.io/#talks):** open to guest spots on AI coding agents and reliability.
+- **[Podcasts and talks](https://tatendaz.github.io/#talks):** open to guest spots on AI coding agents and reliability. I was a guest on the Koshelek Team YouTube channel: [From Zimbabwe to Russia: how a foreigner built a successful IT career](https://www.youtube.com/watch?v=w9U4Nsl0aL0) (in Russian). Former president of a Toastmasters club in Saint Petersburg.
 - **<!--CONTRIB_START-->2550<!--CONTRIB_END--> contributions** in the last year (auto-updated daily).
 - Ask me about: coding agents in a real dev workflow, AI code review, SRE, system design.
 
