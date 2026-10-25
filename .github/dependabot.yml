@@ -10,6 +10,11 @@ updates:
     cooldown:
       default-days: 7
     open-pull-requests-limit: 3
+    # The stats action runs in update-readme-cards.yml, the job that loads the
+    # write deploy key, and merge-when-clean.yml would merge its bumps
+    # unattended. No version-update PRs for it: the owner bumps the SHA by hand.
+    ignore:
+      - dependency-name: stats-organization/github-readme-stats-action
     groups:
       actions-minor-patch:
         patterns: ["*"]

@@ -28,6 +28,9 @@ packages, so nothing new is taken in its first week.
   GITHUB_TOKEN starts no workflows, so `update-readme-cards.yml` (on push to
   `main`) waits for its daily schedule or a manual dispatch after such a merge.
 - npm Dependabot PRs carry the `needs-owner` label, which merge-when-clean skips.
+- Dependabot ignores `stats-organization/github-readme-stats-action`: it runs in
+  the deploy-key job and merge-when-clean would merge its bumps unattended.
+  The owner bumps its SHA by hand.
 - `dependabot-auto-merge.yml`, `readme-health-check.yml`: top-level
   `contents: read`; write scopes moved onto the job.
 - `update-readme-cards.yml`: top-level `permissions: contents: read` added.
