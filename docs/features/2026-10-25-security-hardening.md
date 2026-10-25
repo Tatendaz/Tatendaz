@@ -6,8 +6,7 @@
 ## Summary
 Adds Dependabot for workflow actions and the card renderer (7-day cooldown),
 an npm 7-day release-age floor for the renderer, a `zizmor` workflow that
-fails on high-severity findings, and a CodeRabbit setting that skips
-automatic reviews of Dependabot PRs. Workflow-level permissions are now
+fails on high-severity findings, and the owner's merge-when-clean job. Workflow-level permissions are now
 read-only everywhere; write scopes sit on the jobs that need them.
 
 ## Motivation
@@ -23,8 +22,12 @@ packages, so nothing new is taken in its first week.
 - `scripts/statsenv/.npmrc` (new): `min-release-age=7`.
 - `.github/workflows/zizmor.yml` (new): `zizmorcore/zizmor-action` v0.7.1
   (SHA-pinned), zizmor 1.31.1, `min-severity: high`, no SARIF upload.
-- `.coderabbit.yaml` (new): `inheritance: true` and
-  `reviews.auto_review.ignore_usernames: ["dependabot[bot]"]`.
+- `.github/workflows/merge-when-clean.yml` (new, owner's template, unchanged):
+  merges Dependabot PRs and the owner's `security/*` or `automerge` PRs once CI
+  is green, a real review ran and 0 threads are open. A merge made with
+  GITHUB_TOKEN starts no workflows, so `update-readme-cards.yml` (on push to
+  `main`) waits for its daily schedule or a manual dispatch after such a merge.
+- npm Dependabot PRs carry the `needs-owner` label, which merge-when-clean skips.
 - `dependabot-auto-merge.yml`, `readme-health-check.yml`: top-level
   `contents: read`; write scopes moved onto the job.
 - `update-readme-cards.yml`: top-level `permissions: contents: read` added.

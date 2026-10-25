@@ -15,9 +15,13 @@ updates:
         patterns: ["*"]
         update-types: [minor, patch]
 
-  # The pin-card renderer installed by update-readme-cards.yml.
+  # The pin-card renderer installed by update-readme-cards.yml. It runs in the
+  # job that loads the write deploy key, so its bumps wait for the owner:
+  # merge-when-clean.yml skips PRs labelled needs-owner, and
+  # dependabot-auto-merge.yml only merges github-actions bumps.
   - package-ecosystem: npm
     directory: /scripts/statsenv
+    labels: [dependencies, needs-owner]
     schedule:
       interval: monthly
     cooldown:
