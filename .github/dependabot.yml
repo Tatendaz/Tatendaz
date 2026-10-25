@@ -22,7 +22,7 @@ updates:
 
   # The pin-card renderer installed by update-readme-cards.yml. It runs in the
   # job that loads the write deploy key, so its bumps wait for the owner:
-  # merge-when-clean.yml skips PRs labelled needs-owner.
+  # .github/merge-hold-paths holds them, and the needs-owner label is a second guard.
   - package-ecosystem: npm
     directory: /scripts/statsenv
     labels: [dependencies, needs-owner]

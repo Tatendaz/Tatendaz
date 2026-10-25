@@ -27,7 +27,11 @@ packages, so nothing new is taken in its first week.
   is green, a real review ran and 0 threads are open. A merge made with
   GITHUB_TOKEN starts no workflows, so `update-readme-cards.yml` (on push to
   `main`) waits for its daily schedule or a manual dispatch after such a merge.
-- npm Dependabot PRs carry the `needs-owner` label, which merge-when-clean skips.
+- `.github/merge-hold-paths` (new): merge-when-clean (template v3) never merges a
+  PR touching `scripts/statsenv/`, `scripts/render_pin.mjs`,
+  `update-readme-cards.yml` or `update-contributions.yml`: all run in a job that
+  loads the deploy key. Read from `main`, so it takes effect once merged.
+- npm Dependabot PRs also carry the `needs-owner` label, a second guard.
 - Dependabot ignores `stats-organization/github-readme-stats-action`: it runs in
   the deploy-key job and merge-when-clean would merge its bumps unattended.
   The owner bumps its SHA by hand.

@@ -1,0 +1,7 @@
+# merge-when-clean.yml never merges a PR that touches these paths; the owner does.
+# One extended regex per line. Read from the default branch, not from the PR.
+# Everything below runs in a job that loads ACTIONS_DEPLOY_KEY (writes to main).
+^scripts/statsenv/
+^scripts/render_pin\.mjs$
+^\.github/workflows/update-readme-cards\.yml$
+^\.github/workflows/update-contributions\.yml$
