@@ -9,6 +9,7 @@
   <a href="https://www.linkedin.com/in/tatendazhou"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
   <a href="mailto:tatendaz@me.com"><img src="https://img.shields.io/badge/Email-tatendaz%40me.com-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
   <a href="https://x.com/realtatendazhou"><img src="https://img.shields.io/badge/X-%40realtatendazhou-000000?style=for-the-badge&logo=x&logoColor=white"/></a>
+  <a href="https://builtby.page/tatendaz"><img src="https://img.shields.io/badge/builtby-All%20my%20projects-111111?style=for-the-badge" alt="builtby: all my projects"/></a>
 </p>
 
 <p align="center"><a href="https://github.com/Tatendaz/showcase"><b>📂 Explore my selected work &amp; project write-ups →</b></a></p>
@@ -21,6 +22,7 @@
 - 🟢 **Available for:** consulting, fractional / advisory & speaking — **remote, worldwide**
 - 📈 **<!--CONTRIB_START-->2550<!--CONTRIB_END--> contributions** in the last year — I ship most days (auto-updated daily)
 - 💬 Ask me about: system design, reliability/SRE, AI agents, mobile, crypto infra
+- 🧱 Every project I ship, on one page: **[builtby.page/tatendaz](https://builtby.page/tatendaz)**
 
 ## 🔭 What I'm working on now
 
