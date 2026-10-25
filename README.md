@@ -15,14 +15,14 @@
   <a href="mailto:tatendaz@me.com"><img src="https://img.shields.io/badge/Email-tatendaz%40me.com-5A524B?style=for-the-badge&logo=icloud&logoColor=white" alt="Email tatendaz@me.com" /></a>
 </p>
 
-<p align="center"><b><a href="https://tatendaz.github.io">tatendaz.github.io</a></b>: workshops, talks, and a page for every project below.</p>
+<p align="center"><b><a href="https://tatendaz.github.io">tatendaz.github.io</a></b>: about me, workshops and contact.</p>
 
 ## About me
 
 - **Software and Systems Architect / SRE** with **10+ years in enterprise software**. I design and ship systems end to end, with cloud deployment, monitoring and alerting.
 - I build **open-source tools that review, test and measure the work of AI coding agents** (Claude Code and Codex). They are below.
-- **[Workshops](https://tatendaz.github.io/#workshops):** I teach engineering teams to get real work out of AI coding agents, using these tools as live examples.
-- **[Podcasts and talks](https://tatendaz.github.io/#talks):** open to guest spots on AI coding agents and reliability. I was a guest on the Koshelek Team YouTube channel: [From Zimbabwe to Russia: how a foreigner built a successful IT career](https://www.youtube.com/watch?v=w9U4Nsl0aL0) (in Russian). Former president of a Toastmasters club in Saint Petersburg.
+- **[Workshops](mailto:tatendaz@me.com?subject=Coding-agent%20workshop):** I teach engineering teams to get real work out of AI coding agents, using these tools as live examples.
+- **[Podcasts and talks](mailto:tatendaz@me.com?subject=Podcast%20or%20talk):** open to guest spots on AI coding agents and reliability. I was a guest on the Koshelek Team YouTube channel: [From Zimbabwe to Russia: how a foreigner built a successful IT career](https://www.youtube.com/watch?v=w9U4Nsl0aL0) (in Russian). Former president of a Toastmasters club in Saint Petersburg.
 - **<!--CONTRIB_START-->2550<!--CONTRIB_END--> contributions** in the last year (auto-updated daily).
 - Ask me about: coding agents in a real dev workflow, AI code review, SRE, system design.
 
