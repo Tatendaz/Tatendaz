@@ -17,7 +17,7 @@
 // imported by file path.
 //
 // Usage:
-//   npm i --prefix "$tmp" @stats-organization/github-readme-stats-core@2.1.3
+//   cp scripts/statsenv/package*.json "$tmp/" && npm ci --prefix "$tmp" --ignore-scripts
 //   export STATS_CORE_DIR="$tmp/node_modules/@stats-organization/github-readme-stats-core"
 //   gh api repos/Tatendaz/yapui | node scripts/render_pin.mjs > assets/pin-yapui.svg
 
