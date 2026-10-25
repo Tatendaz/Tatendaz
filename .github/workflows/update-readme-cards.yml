@@ -24,12 +24,22 @@ jobs:
           # No job-wide credentials: the third-party card actions below must
           # never see the deploy key. It is loaded only in the push step.
           persist-credentials: false
-      - name: Generate top languages card
+      # Two variants per card: the README serves assets/<card>.svg in GitHub's
+      # dark theme and assets/<card>-light.svg in the light theme (<picture> +
+      # prefers-color-scheme). Colors match tatendaz.github.io.
+      - name: Generate top languages card (dark)
         uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
         with:
           card: top-langs
-          options: username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css&theme=tokyonight
+          options: username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css,solidity&title_color=E07A52&text_color=ECECEE&bg_color=1D1D1F
           path: assets/top-langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate top languages card (light)
+        uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
+        with:
+          card: top-langs
+          options: username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css,solidity&title_color=B0502E&text_color=1A1613&bg_color=FCFBF7
+          path: assets/top-langs-light.svg
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install pinned core renderer
         # Own step so the GITHUB_TOKEN is never in npm's environment;
@@ -53,9 +63,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           export STATS_CORE_DIR="$RUNNER_TEMP/statsenv/node_modules/@stats-organization/github-readme-stats-core"
-          for repo in yapui langchain-fde-curriculum vergance claude-usage promptups; do
+          # Lowercase names: GitHub resolves repo names case-insensitively,
+          # and the asset paths in README.md are lowercase.
+          for repo in coderabbit-failover codeandconfirm mission-control model-picker t-mods quotasignal herdr-launcher claude-usage; do
             gh api "repos/Tatendaz/$repo" > "$RUNNER_TEMP/$repo.json"
-            node scripts/render_pin.mjs < "$RUNNER_TEMP/$repo.json" > "assets/pin-$repo.svg"
+            node scripts/render_pin.mjs dark < "$RUNNER_TEMP/$repo.json" > "assets/pin-$repo.svg"
+            node scripts/render_pin.mjs light < "$RUNNER_TEMP/$repo.json" > "assets/pin-$repo-light.svg"
           done
       - name: Never commit error cards
         id: sanitize

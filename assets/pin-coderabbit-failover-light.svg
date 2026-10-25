@@ -1,8 +1,8 @@
 
       <svg
         width="400"
-        height="140"
-        viewBox="0 0 400 140"
+        height="150"
+        viewBox="0 0 400 150"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         role="img"
@@ -13,7 +13,7 @@
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-            fill: #70a5fd;
+            fill: #B0502E;
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }
           @supports(-moz-appearance: auto) {
@@ -22,14 +22,14 @@
           }
           
     .description {
-      font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif;fill: #38bdae;
+      font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif;fill: #1A1613;
       
     }
-    .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #38bdae }
+    .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #1A1613 }
     .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
     .badge rect { opacity: 0.2 }
 
-    .stat { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #38bdae }
+    .stat { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #1A1613 }
     .stagger {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
@@ -37,7 +37,7 @@
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
     .icon {
-      fill: #bf91f3;
+      fill: #B0502E;
       display: block;
     }
   
@@ -70,12 +70,12 @@
           data-testid="card-bg"
           x="0.5"
           y="0.5"
-          rx="4.5"
+          rx="6"
           height="99%"
-          stroke="#e4e2e2"
+          stroke="#E5DECF"
           width="399"
-          fill="#1a1b27"
-          stroke-opacity="0"
+          fill="#FCFBF7"
+          stroke-opacity="1"
         />
 
         
@@ -101,7 +101,7 @@
         y="0"
         class="header"
         data-testid="header"
-      >Vergance</text>
+      >coderabbit-failover</text>
     </g>
       </g>
     
@@ -114,19 +114,19 @@
     
 
     <text class="description" x="25" y="-5"> 
-      <tspan dy="1.2em" x="25">Gaze + voice as a multimodal input layer &#8212; look, speak, and</tspan><tspan dy="1.2em" x="25">your gaze-resolved intent goes to Claude.</tspan>
+      <tspan dy="1.2em" x="25">Claude Code skill: share one CodeRabbit review budget</tspan><tspan dy="1.2em" x="25">across agents, and run a local Claude Code backup review</tspan><tspan dy="1.2em" x="25">when CodeRabbit is rate-limited.</tspan>
     </text>
 
-    <g transform="translate(30, 65)">
+    <g transform="translate(30, 75)">
       <g transform="translate(0, 0)">
     <g data-testid="primary-lang">
-      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="#F05138" />
-      <text data-testid="lang-name" class="gray" x="15">Swift</text>
+      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="#3572A5" />
+      <text data-testid="lang-name" class="gray" x="15">Python</text>
     </g>
     </g>
     </g>
     
-  <svg x="0" y="0"><g transform="translate(-3, 88)">
+  <svg x="0" y="0"><g transform="translate(-3, 98)">
       
     </g></svg>
     
