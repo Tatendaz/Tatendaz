@@ -29,14 +29,14 @@ jobs:
         uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
         with:
           card: top-langs
-          options: username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css&title_color=E07A52&text_color=ECECEE&bg_color=1D1D1F
+          options: username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css,solidity&title_color=E07A52&text_color=ECECEE&bg_color=1D1D1F
           path: assets/top-langs.svg
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate top languages card (light)
         uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
         with:
           card: top-langs
-          options: username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css&title_color=B0502E&text_color=1A1613&bg_color=FCFBF7
+          options: username=Tatendaz&layout=compact&hide_border=true&langs_count=8&hide=html,css,solidity&title_color=B0502E&text_color=1A1613&bg_color=FCFBF7
           path: assets/top-langs-light.svg
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install pinned core renderer

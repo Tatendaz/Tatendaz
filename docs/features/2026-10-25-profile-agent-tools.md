@@ -33,7 +33,8 @@ enquiries, matching tatendaz.github.io.
 - `scripts/render_pin.mjs`: takes a palette argument (`dark`, default, or
   `light`) instead of the hardcoded `tokyonight` theme.
 - `update-readme-cards.yml`: renders both palettes for the 8 featured repos and
-  a light top-languages card; stops rendering the dropped repos.
+  a light top-languages card; stops rendering the dropped repos. The
+  top-languages cards also hide Solidity.
 - `readme-health-check.yml`: also checks `srcset=` URLs (the dark/light
   sources), and the 25-URL budget now counts only remote URLs, since
   repo-hosted assets are checked from the checkout in no time.

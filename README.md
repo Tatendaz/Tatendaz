@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://x.com/realtatendazhou"><img src="https://img.shields.io/badge/Follow%20on%20X-%40realtatendazhou-000000?style=for-the-badge&logo=x&logoColor=white" alt="Follow @realtatendazhou on X" /></a>
   <a href="https://www.linkedin.com/in/tatendazhou"><img src="https://img.shields.io/badge/Follow%20on%20LinkedIn-tatendazhou-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Follow Tatenda Zhou on LinkedIn" /></a>
-  <a href="https://tatendaz.github.io"><img src="https://img.shields.io/badge/Website-tatendaz.github.io-B0502E?style=for-the-badge&logo=githubpages&logoColor=white" alt="Website: tatendaz.github.io" /></a>
+  <a href="https://tatendaz.github.io"><img src="https://img.shields.io/badge/Website-tatendaz.github.io-B0502E?style=for-the-badge" alt="Website: tatendaz.github.io" /></a>
   <a href="mailto:tatendaz@me.com"><img src="https://img.shields.io/badge/Email-tatendaz%40me.com-5A524B?style=for-the-badge&logo=icloud&logoColor=white" alt="Email tatendaz@me.com" /></a>
 </p>
 
