@@ -31,12 +31,12 @@ packages, so nothing new is taken in its first week.
 - Dependabot ignores `stats-organization/github-readme-stats-action`: it runs in
   the deploy-key job and merge-when-clean would merge its bumps unattended.
   The owner bumps its SHA by hand.
-- `dependabot-auto-merge.yml`, `readme-health-check.yml`: top-level
+- `readme-health-check.yml`: top-level
   `contents: read`; write scopes moved onto the job.
 - `update-readme-cards.yml`: top-level `permissions: contents: read` added.
-- `dependabot-auto-merge.yml`: only GitHub Actions patch/minor bumps merge
-  unattended, and never the stats action. npm bumps of the renderer wait for a
-  human, because that code runs in the job that loads the deploy key.
+- `dependabot-auto-merge.yml`: deleted. It merged Dependabot patch/minor PRs
+  on green CI with no review, which bypassed merge-when-clean's review gate.
+  merge-when-clean.yml now merges Dependabot PRs after CI and a real review.
 
 ## Notes
 Security updates ignore the Dependabot cooldown by design. The two push
