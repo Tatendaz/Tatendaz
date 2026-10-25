@@ -19,7 +19,12 @@
 // Usage:
 //   npm i --prefix "$tmp" @stats-organization/github-readme-stats-core@2.1.3
 //   export STATS_CORE_DIR="$tmp/node_modules/@stats-organization/github-readme-stats-core"
-//   gh api repos/Tatendaz/yapui | node scripts/render_pin.mjs > assets/pin-yapui.svg
+//   gh api repos/Tatendaz/yapui | node scripts/render_pin.mjs dark > assets/pin-yapui.svg
+//   gh api repos/Tatendaz/yapui | node scripts/render_pin.mjs light > assets/pin-yapui-light.svg
+//
+// The palette argument picks colors for GitHub's dark or light theme; the
+// README serves both through <picture> + prefers-color-scheme. Colors match
+// tatendaz.github.io (assets/site.css there).
 
 import { readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
@@ -41,6 +46,29 @@ const { renderRepoCard } = await import(
 const LANG_COLORS = JSON.parse(
   readFileSync(new URL("./linguist-colors.json", import.meta.url), "utf8"),
 );
+
+const PALETTES = {
+  dark: {
+    title_color: "E07A52",
+    icon_color: "E07A52",
+    text_color: "ECECEE",
+    bg_color: "1D1D1F",
+    border_color: "292A2C",
+  },
+  light: {
+    title_color: "B0502E",
+    icon_color: "B0502E",
+    text_color: "1A1613",
+    bg_color: "FCFBF7",
+    border_color: "E5DECF",
+  },
+};
+const paletteName = process.argv[2] ?? "dark";
+const palette = PALETTES[paletteName];
+if (!palette) {
+  console.error(`unknown palette "${paletteName}" (expected: ${Object.keys(PALETTES).join(", ")})`);
+  process.exit(1);
+}
 
 const rest = JSON.parse(readFileSync(0, "utf8"));
 for (const field of ["name", "full_name"]) {
@@ -84,7 +112,7 @@ const svg = renderRepoCard(
     starCount: rest.stargazers_count,
     forkCount: rest.forks_count,
   },
-  { hide_border: true, theme: "tokyonight" },
+  { hide_border: false, border_radius: 6, ...palette },
 );
 
 process.stdout.write(svg);
