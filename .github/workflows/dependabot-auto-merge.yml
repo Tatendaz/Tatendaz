@@ -43,12 +43,36 @@ jobs:
         uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+      # Only GitHub Actions bumps merge unattended here. npm bumps (the card
+      # renderer in scripts/statsenv) and the stats action both run in
+      # update-readme-cards.yml, the job that loads the write deploy key, so a
+      # human reviews those. Allow-list: an unexpected ecosystem value fails safe.
+      - name: Decide if this bump may merge unattended
+        id: gate
+        env:
+          UPDATE_TYPE: ${{ steps.meta.outputs.update-type }}
+          ECOSYSTEM: ${{ steps.meta.outputs.package-ecosystem }}
+          DEPS: ${{ steps.meta.outputs.dependency-names }}
+        run: |
+          ok=false
+          case "$UPDATE_TYPE" in
+            version-update:semver-patch|version-update:semver-minor)
+              case "$ECOSYSTEM" in
+                github_actions|github-actions)
+                  case "$DEPS" in
+                    *github-readme-stats*) ;;
+                    *) ok=true ;;
+                  esac ;;
+              esac ;;
+          esac
+          echo "update=$UPDATE_TYPE ecosystem=$ECOSYSTEM deps=$DEPS unattended=$ok"
+          echo "unattended=$ok" >> "$GITHUB_OUTPUT"
       # Approval first: satisfies branch protections that require one review.
       # Needs "Allow GitHub Actions to create and approve pull requests" in the
       # repo's Actions settings; continue-on-error keeps repos without that
       # setting (and without a review requirement) working.
       - name: Approve (patch + minor)
-        if: steps.meta.outputs.update-type == 'version-update:semver-patch' || steps.meta.outputs.update-type == 'version-update:semver-minor'
+        if: steps.gate.outputs.unattended == 'true'
         continue-on-error: true
         run: gh pr review --approve "$PR_URL"
         env:
@@ -62,7 +86,7 @@ jobs:
       # every *other* check on this commit (this job excluded) and merge only
       # if none failed.
       - name: Merge (patch + minor)
-        if: steps.meta.outputs.update-type == 'version-update:semver-patch' || steps.meta.outputs.update-type == 'version-update:semver-minor'
+        if: steps.gate.outputs.unattended == 'true'
         run: |
           if gh pr merge --auto --squash --match-head-commit "$HEAD_SHA" "$PR_URL"; then
             exit 0

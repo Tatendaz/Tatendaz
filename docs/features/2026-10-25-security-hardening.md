@@ -28,6 +28,9 @@ packages, so nothing new is taken in its first week.
 - `dependabot-auto-merge.yml`, `readme-health-check.yml`: top-level
   `contents: read`; write scopes moved onto the job.
 - `update-readme-cards.yml`: top-level `permissions: contents: read` added.
+- `dependabot-auto-merge.yml`: only GitHub Actions patch/minor bumps merge
+  unattended, and never the stats action. npm bumps of the renderer wait for a
+  human, because that code runs in the job that loads the deploy key.
 
 ## Notes
 Security updates ignore the Dependabot cooldown by design. The two push
