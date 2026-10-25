@@ -8,6 +8,6 @@
 > `@merge-when-clean-v1`, and allow that one first-party ref in zizmor.
 
 ## Steps
-- Replaced `.github/workflows/merge-when-clean.yml` with the caller. Kept `.github/merge-hold-paths`.
+- Replaced `.github/workflows/merge-when-clean.yml` with the caller. `.github/merge-hold-paths` is unchanged.
 - Added `.github/zizmor.yml` with a `ref-pin` policy for that one workflow path.
 - actionlint and zizmor clean locally.
