@@ -5,6 +5,8 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
+permissions:
+  contents: read
 concurrency:
   group: update-readme-cards
   cancel-in-progress: false

@@ -12,13 +12,16 @@ on:
     branches: [main]
 permissions:
   contents: read
-  issues: write
 concurrency:
   group: readme-health-check-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   image-health:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Opens, comments on and closes the broken-images issue
+      issues: write
     # Required PR check — must terminate promptly even if every host hangs
     # (25 URLs × 45s ≈ 19 min worst case, plus issue-step overhead)
     timeout-minutes: 25
