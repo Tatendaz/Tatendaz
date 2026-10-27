@@ -25,7 +25,7 @@
 - **[Workshops](https://tatendaz.github.io/#workshops):** I teach engineering teams to get real work out of AI coding agents, using these tools as live examples.
 - **[Podcasts and talks](https://tatendaz.github.io/#talks):** open to guest spots on AI coding agents and reliability. I was a guest on the Koshelek Team YouTube channel: [From Zimbabwe to Russia: how a foreigner built a successful IT career](https://www.youtube.com/watch?v=w9U4Nsl0aL0) (in Russian). Former president of a Toastmasters club in Saint Petersburg.
 - **[Open to work](https://tatendaz.github.io/contact/):** full-time roles as a software architect, SRE or AI engineer, remote or with relocation to the Netherlands, the UK, Ireland or Portugal. I also take consulting work on coding-agent workflows, reliability and system design.
-- **<!--CONTRIB_START-->2792<!--CONTRIB_END--> contributions** in the last year (auto-updated daily).
+- **<!--CONTRIB_START-->2813<!--CONTRIB_END--> contributions** in the last year (auto-updated daily).
 - Ask me about: coding agents in a real dev workflow, AI code review, SRE, system design.
 
 ## Tools for AI coding agents
