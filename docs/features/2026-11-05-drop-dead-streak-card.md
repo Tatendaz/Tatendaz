@@ -31,8 +31,8 @@ the image rather than ship a broken one or a new unreviewed CI dependency.
 - A good self-hosted path exists and is ready for Tatenda to review and
   land by hand: `be-next/github-streak-stats-action` (small, MIT-licensed,
   minimal deps — `@actions/core` + `@actions/github`) generates the same
-  card locally from `user(login:).contributionsCollection`, the exact
-  GraphQL shape `update-contributions.yml` already uses successfully (so
+  card locally from `user(login:).contributionsCollection`, the same root
+  path `update-contributions.yml` already uses successfully (so
   it isn't affected by the 2026-07-22 `repository`-field FORBIDDEN
   restriction), and it exposes the same custom color inputs
   (`background`, `ring`, `fire`, `currStreakLabel`, `sideLabels`,

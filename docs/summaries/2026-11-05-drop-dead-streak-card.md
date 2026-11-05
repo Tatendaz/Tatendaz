@@ -27,8 +27,9 @@
 - Searched for a maintained drop-in host replacement — found none verified
   as up. Found and fully read the source of
   `be-next/github-streak-stats-action`, a small GitHub Action that could
-  generate the same card locally using the same GraphQL shape
-  `update-contributions.yml` already relies on. Drafted that integration
+  generate the same card locally using the same GraphQL root path
+  (`user(login:).contributionsCollection`) `update-contributions.yml`
+  already relies on. Drafted that integration
   (new workflow steps + seed SVGs) but it was blocked from being committed
   by the session's own safety controls: adding a new third-party GitHub
   Action to CI with repo-token access is a supply-chain decision that
